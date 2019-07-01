@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.willowtree.matthewcorbett.bookthing.api.BookApi
+import com.willowtree.matthewcorbett.bookthing.api.image.GlideApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -38,6 +39,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ImageView.loadUrl(url: String?) {
-        Glide.with(this).load(url).into(this)
+        GlideApp.with(this).load(url).into(this)
     }
 }
