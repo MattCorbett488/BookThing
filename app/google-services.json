@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "437823171603",
+    "firebase_url": "https://bookthing-8675309.firebaseio.com",
+    "project_id": "bookthing-8675309",
+    "storage_bucket": "bookthing-8675309.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437823171603:android:99792cf492b4cfc5",
+        "android_client_info": {
+          "package_name": "com.willowtree.matthewcorbett.bookthing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437823171603-vqteho7573l2fl3bcbmtfrqmlrmhg6dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvaRHFRzCn2tfQkXrAY4aMfQDR9kmOgcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437823171603-vqteho7573l2fl3bcbmtfrqmlrmhg6dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
