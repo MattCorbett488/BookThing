@@ -14,9 +14,11 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var bookApi: BookApi
+    @Inject
+    lateinit var bookApi: BookApi
 
     private val image by lazy { findViewById<AppCompatImageView>(R.id.main_image) }
 
@@ -24,12 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bookApi = Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(OkHttpClient())
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-            .create()
+        (application as BookApp).appComponent.inject(this)
 
         GlobalScope.launch(Dispatchers.Main) {
             val results = bookApi.queryVolumesByTerm("thing")
