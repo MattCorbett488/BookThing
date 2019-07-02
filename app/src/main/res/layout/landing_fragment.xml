@@ -29,8 +29,11 @@
             android:id="@+id/book_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:paddingBottom="40dp"
+            android:clipToPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_text_layout"/>
+            app:layout_constraintTop_toBottomOf="@id/search_text_layout"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

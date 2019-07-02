@@ -6,19 +6,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.willowtree.matthewcorbett.bookthing.api.VolumeRepository
 import com.willowtree.matthewcorbett.bookthing.model.Book
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LandingViewModel @Inject constructor(private val volumeRepository: VolumeRepository): ViewModel() {
     private val books: MutableLiveData<List<Book>> = MutableLiveData()
 
+    var searchJob: Job? = null
+
     fun getBooks(): LiveData<List<Book>> = books
 
     fun search(query: String) {
-        viewModelScope.launch {
+        searchJob = viewModelScope.launch {
             val volume = volumeRepository.getVolumesByTerm(query)
                 .filter { true }
             books.value = volume
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        searchJob?.cancel()
     }
 }
