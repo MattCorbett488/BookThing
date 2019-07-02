@@ -2,7 +2,7 @@ package com.willowtree.matthewcorbett.bookthing.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.willowtree.matthewcorbett.bookthing.landing.LandingViewModel
+import com.willowtree.matthewcorbett.bookthing.ui.landing.LandingViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module

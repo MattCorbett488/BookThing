@@ -1,4 +1,4 @@
-package com.willowtree.matthewcorbett.bookthing.landing
+package com.willowtree.matthewcorbett.bookthing.ui.landing
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -16,7 +16,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="n">
-        <activity android:name=".landing.MainActivity">
+        <activity android:name="com.willowtree.matthewcorbett.bookthing.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
