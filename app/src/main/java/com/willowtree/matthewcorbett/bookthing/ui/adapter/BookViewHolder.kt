@@ -12,8 +12,13 @@ class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private var image = itemView.findViewById<AppCompatImageView>(R.id.book_image)
     private var title = itemView.findViewById<AppCompatTextView>(R.id.book_title)
 
+    private lateinit var book: Book
+
     fun bind(book: Book) {
+        this.book = book
         image.loadImage(book.imageUrl ?: book.thumbnailImageUrl)
         title.text = book.title
     }
+
+    fun setClickListener(listener: View.OnClickListener) = itemView.setOnClickListener(listener)
 }

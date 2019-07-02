@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
@@ -33,6 +34,10 @@ class LandingFragment : Fragment() {
 
     private lateinit var viewModel: LandingViewModel
 
+    val bookClickedListener: (Book) -> Unit = {
+        findNavController().navigate(LandingFragmentDirections.specifyBook(it))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +52,7 @@ class LandingFragment : Fragment() {
         bookList = view.findViewById(R.id.book_list)
         bookList.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = BookAdapter(emptyList())
+            adapter = BookAdapter(emptyList(), bookClickedListener)
         }
         searchText = view.findViewById(R.id.search_text)
         searchText.setOnEditorActionListener { _, actionId, _ ->
