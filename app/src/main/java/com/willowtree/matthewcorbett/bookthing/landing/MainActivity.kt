@@ -33,18 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LandingViewModel::class.java)
 
-        viewModel.getVolumes().observe(this, Observer {
-            val imageLinks = it.first().volumeInfo.imageLinks
-
-            val url = when {
-                imageLinks.extraLarge != null -> imageLinks.extraLarge
-                imageLinks.large != null -> imageLinks.large
-                imageLinks.medium != null -> imageLinks.medium
-                imageLinks.small != null -> imageLinks.small
-                imageLinks.thumbnail != null -> imageLinks.thumbnail
-                else -> imageLinks.smallThumbnail
-            }
-            image.loadUrl(url)
+        viewModel.getBooks().observe(this, Observer {
+            image.loadUrl(it.first().imageUrl ?: it.first().thumbnailImageUrl)
         })
     }
 
