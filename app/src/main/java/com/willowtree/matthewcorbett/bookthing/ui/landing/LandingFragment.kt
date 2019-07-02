@@ -1,29 +1,30 @@
 package com.willowtree.matthewcorbett.bookthing.ui.landing
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.google.android.material.textfield.TextInputEditText
 import com.willowtree.matthewcorbett.bookthing.BookApp
 import com.willowtree.matthewcorbett.bookthing.R
 import com.willowtree.matthewcorbett.bookthing.di.ViewModelFactory
+import com.willowtree.matthewcorbett.bookthing.dismissKeyboard
 import javax.inject.Inject
 
 class LandingFragment : Fragment() {
-
-    private val button by lazy { view?.findViewById<AppCompatButton>(R.id.book_button) }
-
+    
+    private lateinit var searchText: TextInputEditText
+    
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
-    companion object {
-        fun newInstance() = LandingFragment()
-    }
 
     private lateinit var viewModel: LandingViewModel
 
@@ -37,12 +38,22 @@ class LandingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity?.application as? BookApp)?.appComponent?.inject(this)
+        
+        searchText = view.findViewById(R.id.search_text)
+        searchText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == IME_ACTION_DONE) {
+                viewModel.search(searchText.text.toString())
+                searchText.clearFocus()
+                searchText.dismissKeyboard()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LandingViewModel::class.java)
 
-        button?.setOnClickListener {
-            val controller = Navigation.findNavController(activity as AppCompatActivity, R.id.nav_host_fragment)
-            controller.navigate(R.id.bookFragment)
-        }
+        viewModel.getBooks().observe(this, Observer {
+            Log.d("BOOKS_LIST", it.toString())
+        })
     }
 }

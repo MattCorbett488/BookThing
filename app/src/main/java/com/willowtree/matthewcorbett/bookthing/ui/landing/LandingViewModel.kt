@@ -12,13 +12,13 @@ import javax.inject.Inject
 class LandingViewModel @Inject constructor(private val volumeRepository: VolumeRepository): ViewModel() {
     private val books: MutableLiveData<List<Book>> = MutableLiveData()
 
-    init {
+    fun getBooks(): LiveData<List<Book>> = books
+
+    fun search(query: String) {
         viewModelScope.launch {
-            val volume = volumeRepository.getVolumesByTerm("Android")
+            val volume = volumeRepository.getVolumesByTerm(query)
                 .filter { true }
             books.value = volume
         }
     }
-
-    fun getBooks(): LiveData<List<Book>> = books
 }

@@ -8,14 +8,14 @@ class BookMapper {
     fun mapBook(volume: Volume): Book {
         val info = volume.volumeInfo
         val images = info.imageLinks
-        val thumbnailUrl = images.thumbnail?.let {
+        val thumbnailUrl = images?.thumbnail?.let {
             it
-        } ?: images.smallThumbnail
+        } ?: images?.smallThumbnail
         val imageUrl = when {
-            images.extraLarge != null -> images.extraLarge
-            images.large != null -> images.large
-            images.medium != null -> images.medium
-            else -> images.small
+            images?.extraLarge != null -> images.extraLarge
+            images?.large != null -> images.large
+            images?.medium != null -> images.medium
+            else -> images?.small
         }
 
         return Book(
