@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.willowtree.matthewcorbett.bookthing.api.VolumeRepository
 import com.willowtree.matthewcorbett.bookthing.model.Book
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
 import javax.inject.Inject
